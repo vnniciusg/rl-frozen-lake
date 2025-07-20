@@ -36,8 +36,9 @@ def setup_environment(
     env_name: str = "FrozenLake-v1",
     num_eval_episodes: int = params.total_episodes,
     render_mode: Literal["rgb_array", "human", "ansi"] = "rgb_array",
-    training_period: int = 250,
+    training_period: int = 1000,
     video_folder: str = "frozen-lake-agent",
+    name_prefix: str = "eval",
 ):
     """
     Create and configure a FrozenLake environment with recording capabilities.
@@ -63,6 +64,9 @@ def setup_environment(
             Videos are recorded every `training_period` episodes. Defaults to 250.
         video_folder (str, optional): Directory path where recorded videos
             will be saved. Defaults to "frozen-lake-agent".
+        name_prefix (str, optional): Prefix for video filenames. The recorded videos
+            will be named as "{name_prefix}-episode-{episode_number}.mp4".
+            Defaults to "eval".
 
     Returns:
         gymnasium.Env: A wrapped FrozenLake environment with the following wrappers:
@@ -95,7 +99,7 @@ def setup_environment(
     _env = RecordVideo(
         _env,
         video_folder=video_folder,
-        name_prefix="eval",
+        name_prefix=name_prefix,
         episode_trigger=lambda x: x % training_period == 0,
     )
 
