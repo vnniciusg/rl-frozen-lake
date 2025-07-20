@@ -5,7 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "gymnasium[classic-control]>=1.2.0",
+    "gymnasium[classic-control,other]>=1.2.0",
+    "matplotlib>=3.10.3",
+    "pandas>=2.3.1",
+    "seaborn>=0.13.2",
+    "tqdm>=4.67.1",
 ]
 
 [dependency-groups]
